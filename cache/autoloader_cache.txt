@@ -1,0 +1,1 @@
+a:4:{s:15:"FrontController";s:63:"C:\xampp\htdocs\Tests\lightvc-2.0.2/classes/FrontController.php";s:5:"Model";s:52:"C:\xampp\htdocs\Tests\lightvc-2.0.2/models/Model.php";s:8:"Database";s:56:"C:\xampp\htdocs\Tests\lightvc-2.0.2/classes/Database.php";s:4:"User";s:51:"C:\xampp\htdocs\Tests\lightvc-2.0.2/models/User.php";}
