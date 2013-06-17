@@ -12,6 +12,7 @@ Lvc_Config::addLayoutViewPath(APP_PATH . 'views/layouts/');
 Lvc_Config::addElementViewPath(APP_PATH . 'views/elements/');
 Lvc_Config::setViewClassName('AppView');
 Lvc_Config::setLayoutContentVarName('bodyContent');
+Lvc_Config::setDefaultControllerActionName('index');
 include(APP_PATH . 'classes/AppController.php');
 include(APP_PATH . 'classes/AppView.php');
 include(dirname(__FILE__) . '/routes.php');
