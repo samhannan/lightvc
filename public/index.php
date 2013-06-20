@@ -12,22 +12,33 @@ try
 }
 catch (Lvc_Exception $e)
 {
-	// Log the error message
-	error_log($e->getMessage());
+	try
+	{
+		// Load static page if available
+		$fc = new Lvc_FrontController();
+		$fc->addRouter(new Lvc_RegexRewriteRouter($staticRoute));
+		$fc->processRequest(new Lvc_HttpRequest());
+	} 
+	catch(Lvc_Exception $e)
+	{
+		// Controller and static page do not exist - force 404
+		$request = new Lvc_Request();
+		$request->setControllerName('error');
+		$request->setActionName('view');
+		$request->setActionParams(array('error' => '404'));
 
-	// Get a request for the 404 error page.
-	$request = new Lvc_Request();
-	$request->setControllerName('error');
-	$request->setActionName('view');
-	$request->setActionParams(array('error' => '404'));
-
-	// Get a new front controller without any routers, and have it process our handmade request.
-	$fc = new Lvc_FrontController();
-	$fc->processRequest($request);
+		$fc = new Lvc_FrontController();
+		$fc->processRequest($request);
+	}
+	catch (Exception $e)
+	{
+		// Log error
+		error_log($e->getMessage());
+	}
 }
 catch (Exception $e)
 {
-	// Some other error, output "technical difficulties" message to user?
+	// Log error
 	error_log($e->getMessage());
 }
 
