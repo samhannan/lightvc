@@ -12,18 +12,19 @@ $regexRoutes = array(
 		)
 	),
 
-	// Map nothing to the home page.
+	// Controller/method/args
 	'#^([^/]+)/([^/]+)/?(.*)$#' => array(
 		'controller' => 1,
 		'action' => 2,
 		'additional_params' => 3
 	),
 
-	// Map nothing to the home page.
+	// Controller/index (default controller action)
 	'#^([^/]+)/?$#' => array(
 		'controller' => 1,
-			'action' => 'index'
-	)
+		'action' => 'index'
+	),
+
 	
 );
 

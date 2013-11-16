@@ -22,14 +22,20 @@ include_once(APP_PATH . 'config/local.php');
 
 // Autoloader (http://anthonybush.com/projects/autoloader/)
 include(APP_PATH . 'classes/Autoloader.php');
-Autoloader::setCacheFilePath(APP_PATH . 'cache/autoloader_cache.txt');
+//Autoloader::setCacheFilePath(APP_PATH . 'cache/autoloader_cache.txt');
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader::setClassFileSuffix('.php');
 Autoloader::setClassPaths(array(
 	APP_PATH . 'classes/',
-	APP_PATH . 'models/'
+	APP_PATH . 'models/',
+	APP_PATH . 'libraries/'
 ));
+if(MODE == 'TEST') Autoloader::setCacheEnable(false);
 spl_autoload_register(array('Autoloader', 'loadClass'));
+
+// Errors
+ini_set('show_errors', true);
+error_reporting(E_ALL);
 
 
 /*

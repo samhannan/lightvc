@@ -1,12 +1,15 @@
 <?php
 
-abstract class Model extends Database {
+class Model extends Database {
+	protected $db;
 	
-	public static function factory($name)
-	{
-		return new $name;
+	public function __construct() {
+		$this->db = parent::getInstance()->pdo;
 	}
 	
+	public static function factory($name) {
+		return new $name;
+	}
 }
 
 ?>

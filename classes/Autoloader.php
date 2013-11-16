@@ -24,8 +24,14 @@ class Autoloader {
 	protected static $classFileSuffix = '.class.php';
 	protected static $cacheFilePath = null;
 	protected static $cachedPaths = null;
+	protected static $enableCache = true;
 	protected static $excludeFolderNames = '/^CVS|\..*$/'; // CVS directories and directories starting with a dot (.).
 	protected static $hasSaver = false;
+	
+	
+	public static function setCacheEnable($enable) {
+		self::$enableCache = $enable;
+	}
 	
 	/**
 	 * Sets the paths to search in when looking for a class.
@@ -144,6 +150,9 @@ class Autoloader {
 	 * @return void
 	 **/
 	public static function saveCachedPaths() {
+		if(self::$enableCache == false) {
+			return;
+		}
 		if (!file_exists(self::$cacheFilePath) || is_writable(self::$cacheFilePath)) {
 			$fileContents = serialize(self::$cachedPaths);
 			$bytes = file_put_contents(self::$cacheFilePath, $fileContents);
